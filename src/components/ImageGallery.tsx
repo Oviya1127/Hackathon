@@ -1,5 +1,4 @@
 'use client';
-import React from 'react';
 import Marquee from 'react-fast-marquee';
 
 const ImageGallery = () => {
@@ -21,8 +20,8 @@ const ImageGallery = () => {
   }));
 
   return (
-    <section className="py-12">
-      <Marquee pauseOnHover speed={100} gradient={false} className="overflow-hidden">
+    <section className="py-12 w-full max-w-full overflow-x-hidden">
+      <Marquee pauseOnHover speed={100} gradient={false} className="w-full max-w-full overflow-x-hidden">
         {images.map((image) => (
           <div
             key={image.id}

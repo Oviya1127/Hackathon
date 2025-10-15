@@ -1,11 +1,10 @@
-import { AuroraText } from '../components/magicui/aurora-text';
-import LineShadowText from '../components/magicui/line-shadow-text';
+
 import { Link } from 'react-router-dom';
 import Timer from './sub/Timer';
 
 const Hero = () => {
   return (
-    <section className='relative flex flex-col items-center justify-center min-h-screen overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black'>
+    <section className='relative flex flex-col items-center justify-center min-h-screen overflow-hidden '>
       <div className='flex flex-col items-center justify-center w-full px-4 py-16 sm:py-20 space-y-12'>
 
         {/* Top row: Logos + Title */}

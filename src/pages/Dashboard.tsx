@@ -166,7 +166,7 @@ const HomePage: React.FC = () => {
     }));
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white z-30">
+    <div className="min-h-screen flex flex-col justify-center items-center z-30 relative">
       <Navbar />
       <AnimatedBackground />
 
@@ -174,8 +174,8 @@ const HomePage: React.FC = () => {
       <Hero />
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4 relative">
-        <div className="max-w-7xl mx-auto">
+      <section id="about" className="py-20 px-4 relative flex flex-col items-center justify-center">
+        <div className="max-w-4xl w-full mx-auto flex flex-col items-center">
           <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
             About Hackathon 2.0
           </h2>
@@ -185,7 +185,7 @@ const HomePage: React.FC = () => {
               Intra College Hackathon
             </h3>
 
-            <p className="text-gray-300 leading-tight text-base sm:text-lg sm:leading-relaxed max-w-4xl mx-auto text-justify font-sharetech">
+            <p className="leading-tight text-base sm:text-lg sm:leading-relaxed text-center font-sharetech">
               Hackathon 2025, organized by the Department of Computer Science and Engineering at Thanthai Periyar Government Institute of Technology (TPGIT), Vellore, is an Intra-College Hackathon designed to ignite creativity, collaboration, and problem-solving among students.
               This edition, Hackathon 2.0, provides an inspiring platform where innovative minds come together to build real-world solutions using cutting-edge technologies.
               Hackathon 2.0 isn’t just a competition — it’s a celebration of innovation, teamwork, and learning.
@@ -196,8 +196,8 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Events Section */}
-      <section id="events" className="sm:py-20 px-4 relative">
-  <div className="max-w-7xl mx-auto">
+      <section id="events" className="sm:py-20 px-4 relative flex flex-col items-center justify-center">
+  <div className="max-w-7xl w-full mx-auto flex flex-col items-center">
     <h2 className="text-4xl font-bold mb-16 text-center bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
       Problem Statements
     </h2>
@@ -226,7 +226,7 @@ const HomePage: React.FC = () => {
 
           <div className="flex flex-col items-center justify-center space-y-8">
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <div className="bg-gray-900 bg-opacity-80 p-4 rounded-lg border border-yellow-500 flex items-center space-x-4 hover:shadow-[0_0_20px_rgba(255,200,0,0.5)] transition-all">
+              <div className="p-4 rounded-lg border border-yellow-500 flex items-center space-x-4 hover:shadow-[0_0_20px_rgba(255,200,0,0.5)] transition-all bg-transparent">
                 <Users size={24} className="text-yellow-400" />
                 <div>
                   <p className="text-yellow-400 font-medium">Student 1</p>
@@ -234,7 +234,7 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-gray-900 bg-opacity-80 p-4 rounded-lg border border-yellow-500 flex items-center space-x-4 hover:shadow-[0_0_20px_rgba(255,200,0,0.5)] transition-all">
+              <div className="p-4 rounded-lg border border-yellow-500 flex items-center space-x-4 hover:shadow-[0_0_20px_rgba(255,200,0,0.5)] transition-all bg-transparent">
                 <Users size={24} className="text-yellow-400" />
                 <div>
                   <p className="text-yellow-400 font-medium">Student 2</p>
@@ -243,7 +243,7 @@ const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-gray-900 bg-opacity-80 p-4 rounded-lg border border-red-500 flex items-center space-x-4 hover:shadow-[0_0_20px_rgba(255,100,0,0.6)] transition-all">
+            <div className="p-4 rounded-lg border border-red-500 flex items-center space-x-4 hover:shadow-[0_0_20px_rgba(255,100,0,0.6)] transition-all bg-transparent">
               <MapPin size={24} className="text-red-500" />
               <div>
                 <p className="text-red-400 font-medium">
@@ -259,7 +259,7 @@ const HomePage: React.FC = () => {
       <Questions />
 
       {/* Footer */}
-      <footer className="py-8 px-4 border-t border-gray-800 bg-gradient-to-r from-yellow-700 via-orange-800 to-red-800">
+      <footer className="py-8 px-4 border-t border-gray-800 bg-transparent">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-gray-200 mb-4">
             © Thanthai Periyar Government Institute of Technology Hackathon 2.0
