@@ -2,9 +2,14 @@
 
 import { useState } from 'react';
 import { ChevronDown } from 'tabler-icons-react';
-import FlareCursor from "../components/Cursor";  // adjust path
+import FlareCursor from "../components/Cursor";
 
-const faqData = [
+type FAQItem = {
+  question: string;
+  answer: string;
+};
+
+const faqData: FAQItem[] = [
   {
     question: 'Who can participate in this Hackathon?',
     answer: 'The hackathon is exclusively open to students of Thanthai Periyar Government Institute of Technology (TPGIT), Vellore.'
@@ -43,20 +48,19 @@ const faqData = [
   },
 ];
 
-function Questions() {
-  const [openStates, setOpenStates] = useState(Array(faqData.length).fill(false));
+function Questions(): JSX.Element {
+  const [openStates, setOpenStates] = useState<boolean[]>(Array(faqData.length).fill(false));
 
-  function handleClick(index: number) {
+  const handleClick = (index: number) => {
     const newOpenStates = [...openStates];
     newOpenStates[index] = !newOpenStates[index];
     setOpenStates(newOpenStates);
-  }
+  };
 
   return (
     <section className="faq-section" id="faqs">
       <FlareCursor />
       <h2 className="faq-title">Hackathon FAQs</h2>
-
       <div className="faq-container">
         {faqData.map((faq, index) => (
           <div key={index} className="faq-item">

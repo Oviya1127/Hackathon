@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Dashboard";
-import FacultyCard from "./components/FacultyCard";
 import SignupPage from "./pages/signup";
 import './index.css';
 
