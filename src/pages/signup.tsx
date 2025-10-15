@@ -3,6 +3,8 @@ import { useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
+
+
 // ✅ Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyC5C1zQUdt0u5mirx8l9sUpgWD52FY8CBg",

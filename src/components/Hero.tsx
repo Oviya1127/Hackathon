@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Timer from './sub/Timer';
 
 const Hero = () => {
   return (

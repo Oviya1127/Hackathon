@@ -20,7 +20,6 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
   return (
     <>
       <NeonCard
-        type="tech"
         className="problem-card"
         onClick={() => setIsOpen(true)}
       >

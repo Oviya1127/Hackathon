@@ -25,7 +25,7 @@ const FacultyCard: React.FC<FacultyCardProps> = ({
       <p className="title">{title}</p>
       <p className="role">{role}</p>
 
-      <style jsx>{`
+      <style>{`
         .faculty-card {
           background-color: #111;
           border: 2px solid #333; /* default border */

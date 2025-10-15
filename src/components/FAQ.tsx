@@ -67,7 +67,7 @@ function Questions(): JSX.Element {
             <div className="faq-question" onClick={() => handleClick(index)}>
               <span>{faq.question}</span>
               <span className={`chevron ${openStates[index] ? 'open' : ''}`}>
-                <ChevronDown stroke={1.5} size={24} />
+                <ChevronDown stroke='1.5' size={24} />
               </span>
             </div>
             {openStates[index] && (
@@ -79,7 +79,7 @@ function Questions(): JSX.Element {
         ))}
       </div>
 
-      <style jsx>{`
+      <style>{`
         .faq-section {
           padding: 60px 20px;
           background-color: #000;

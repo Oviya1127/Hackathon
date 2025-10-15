@@ -6,6 +6,7 @@ import ImageGallery from '../components/ImageGallery';
 import Questions from '../components/FAQ';
 import Hero from '../components/Hero';
 
+
 interface Faculty {
   name: string;
   title: string;
@@ -29,7 +30,7 @@ const FacultySection: React.FC<FacultySectionProps> = ({ title, staff }) => {
         ))}
       </div>
 
-      <style jsx>{`
+      <style>{`
         .faculty-section {
           padding: 60px 20px;
           background: linear-gradient(to right, #1a1a1a, #000, #1a1a1a);
@@ -125,7 +126,7 @@ const HomePage: React.FC = () => {
         <p>🔥 Made with Passion by CSE Department</p>
       </footer>
 
-      <style jsx>{`
+      <style>{`
         .homepage {
           background-color: #000;
           color: #fff;

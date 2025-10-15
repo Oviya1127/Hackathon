@@ -28,7 +28,7 @@ const ImageGallery = () => {
       </Marquee>
 
       {/* Inline CSS */}
-      <style jsx>{`
+      <style>{`
         .image-gallery {
           padding: 40px 0;
           background-color: #000;
