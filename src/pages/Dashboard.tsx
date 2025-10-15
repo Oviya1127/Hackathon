@@ -1,172 +1,94 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Calendar, MapPin, Users, Phone } from 'lucide-react';
+import React from 'react';
 import AnimatedBackground from '../components/ui/AnimatedBackground';
-import CountdownTimer from '../components/CountdownTimer';
 import EventCard from '../components/ProblemStatementCard';
 import FacultyCard from '../components/FacultyCard';
-import { PROBLEM_STATEMENTS } from "../data/problemStatements";
-import SponsorCard from '../components/SponsorCard';
+import { PROBLEM_STATEMENTS } from "../data/ProblemStatements";
 import Navbar from '../components/Navbar';
-import FaqAccordion from '../components/ui/FaqAccordion';
 import ImageGallery from '../components/ImageGallery';
 import Questions from '../components/FAQ';
 import Hero from '../components/Hero';
-import AlumniSponsor from '../components/AlumniSponsor';
 
-// Faculty Section reusable component
-const FacultySection = ({ title, staff }) => (
-  <section className="py-20 px-4 relative">
-    <div className="max-w-7xl mx-auto">
-      <h2 className="text-4xl font-bold mb-16 text-center bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent drop-shadow-md">
-        {title}
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 justify-center items-center">
+interface Faculty {
+  name: string;
+  title: string;
+  qualification: string;
+  role: string;
+  image: string;
+}
+
+interface FacultySectionProps {
+  title: string;
+  staff: Faculty[];
+}
+
+const FacultySection: React.FC<FacultySectionProps> = ({ title, staff }) => {
+  return (
+    <section className="faculty-section">
+      <h2 className="section-title">{title}</h2>
+      <div className="faculty-container">
         {staff.map((member, index) => (
           <FacultyCard key={index} {...member} />
         ))}
       </div>
-    </div>
-  </section>
-);
+
+      <style jsx>{`
+        .faculty-section {
+          padding: 60px 20px;
+          background: linear-gradient(to right, #1a1a1a, #000, #1a1a1a);
+          color: #fff;
+          text-align: center;
+        }
+
+        .section-title {
+          font-size: 32px;
+          font-weight: bold;
+          margin-bottom: 40px;
+          color: #ffcc00;
+        }
+
+        .faculty-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+          .faculty-container {
+            flex-direction: column;
+            align-items: center;
+          }
+        }
+      `}</style>
+    </section>
+  );
+};
 
 const HomePage: React.FC = () => {
-  const navigate = useNavigate();
-  const [events, setEvents] = useState<any>({});
-  const targetDate = new Date('October 30, 2025 00:00:00');
-
-  // Faculty data
-  const headFaculty = [
-    {
-      name: 'Dr.P.K.Palani',
-      qualification: 'B.E.(HONS),M.E.,Ph.D.',
-      title: 'Principal',
-      role: '',
-      image: '/faculty/2.png'
-    },
-    {
-      name: 'Dr.S.LETITIA',
-      qualification: 'M.E.,Ph.D.',
-      title: 'Head of the Department',
-      role: '',
-      image: '/faculty/3.jpg'
-    },
-    {
-      name: 'Dr.N.Jagadeeswari',
-      qualification: 'M.E.,Ph.D.',
-      title: 'Assistant Professor',
-      role: 'Treasurer & Event Coordinator',
-      image: '/faculty/1.png'
-    },
-    {
-      name: 'Prof.B.Jothi',
-      qualification: 'M.E.',
-      title: 'Associate Professor',
-      role: '',
-      image: '/faculty/4.png'
-    },
-    {
-      name: 'Dr.K.Saraswathi',
-      qualification: 'M.E.,Ph.D.',
-      title: 'Assistant Professor',
-      role: '',
-      image: '/faculty/5.png'
-    }
+  const headFaculty: Faculty[] = [
+    { name: 'Dr.S.LETITIA', qualification: 'M.E.,Ph.D.', title: 'Principal', role: '', image: '/faculty/3.jpg' },
+    { name: 'Dr.N.Jagadeeswari', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: 'Treasurer & Event Coordinator', image: '/faculty/1.png' },
+    { name: 'Dr.K.Saraswathi', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/5.png' },
+    { name: 'Prof.B.Jothi', qualification: 'M.E.', title: 'Associate Professor', role: '', image: '/faculty/4.png' },
   ];
 
-  const teachingStaff = [
-    {
-      name: 'Mr.K.Thirunavukkarasu',
-      qualification: 'M.E.',
-      title: 'Assistant Professor',
-      role: '',
-      image: '/faculty/10.jpeg'
-    },
-    {
-      name: 'Mrs.N.Naveena Begum',
-      qualification: 'M.E.',
-      title: 'Assistant Professor',
-      role: '',
-      image: '/faculty/11.jpeg'
-    },
-    {
-      name: 'Mrs.D.Ramya',
-      qualification: 'M.Tech',
-      title: 'Assistant Professor',
-      role: '',
-      image: '/faculty/7.jpg'
-    },
-    {
-      name: 'Mrs.S.Vanathi',
-      qualification: 'M.E.',
-      title: 'Assistant Professor',
-      role: '',
-      image: '/faculty/6.jpeg'
-    },
-    {
-      name: 'Mrs.A.Priyangaa',
-      qualification: 'M.E.',
-      title: 'Assistant Professor',
-      role: '',
-      image: '/faculty/8.jpg'
-    },
-    {
-      name: 'Mrs.P.Vijayalakshmi',
-      qualification: 'M.E.',
-      title: 'Assistant Professor',
-      role: '',
-      image: '/faculty/9.jpg'
-    }
+  const teachingStaff: Faculty[] = [
+    { name: 'Mr.K.Thirunavukkarasu', qualification: 'M.E.', title: 'Assistant Professor', role: '', image: '/faculty/10.jpeg' },
+    { name: 'Mrs.N.Naveena Begum', qualification: 'M.E.', title: 'Assistant Professor', role: '', image: '/faculty/11.jpeg' },
+    { name: 'Mrs.S.Vanathi', qualification: 'M.E.', title: 'Assistant Professor', role: '', image: '/faculty/6.jpeg' },
+    { name: 'Mrs.A.Priyangaa', qualification: 'M.E.', title: 'Assistant Professor', role: '', image: '/faculty/8.jpg' },
+    { name: 'Dr .K.Narayanan', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img15.jpg' },
+    { name: 'Dr .S.P.Vijayanand', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img18.jpg' },
+    { name: 'Dr.N.Thirugnanasambandan', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img19.jpg' },
   ];
 
-  const nonTeachingStaff = [
-    {
-      name: 'Mr.C.Govindaraj',
-      qualification: 'Diploma',
-      title: 'Lab Assistant',
-      role: '',
-      image: '/faculty/12.jpeg'
-    },
-    {
-      name: 'Ms.S.Megala',
-      qualification: 'B.Sc.',
-      title: 'Lab Assistant',
-      role: '',
-      image: '/faculty/13.png'
-    }
+  const nonTeachingStaff: Faculty[] = [
+    { name: 'Mr.C.Govindaraj', qualification: 'Diploma', title: 'Lab Assistant', role: '', image: '/faculty/12.jpeg' },
+    { name: 'Ms.S.Megala', qualification: 'B.Sc.', title: 'Lab Assistant', role: '', image: '/faculty/13.png' },
   ];
-
-  const sponsors = [
-    { name: 'QSpiders', image: '/sponsor/qspider.png' },
-    { name: 'T.K.T', image: '/sponsor/tkt.png' }
-  ];
-
-  useEffect(() => {
-    const getEvents = async () => {
-      const eventsData = await fetchEvents();
-      setEvents(eventsData);
-    };
-    getEvents();
-  }, []);
-
-  const techEvents = Object.entries(events)
-    .filter(([_, e]: [string, any]) => e.type === 'technical')
-    .map(([id, e]: [string, any]) => ({
-      id,
-      ...e,
-      image: '/' + e.image || '/default-tech.png'
-    }));
-
-  const nonTechEvents = Object.entries(events)
-    .filter(([_, e]: [string, any]) => e.type === 'non-technical')
-    .map(([id, e]: [string, any]) => ({
-      id,
-      ...e,
-      image: '/' + e.image || '/default-tech.png'
-    }));
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center z-30 relative">
+    <div className="homepage">
       <Navbar />
       <AnimatedBackground />
 
@@ -174,101 +96,104 @@ const HomePage: React.FC = () => {
       <Hero />
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4 relative flex flex-col items-center justify-center">
-        <div className="max-w-4xl w-full mx-auto flex flex-col items-center">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
-            About Hackathon 2.0
-          </h2>
-
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-center text-yellow-400 font-sharetech">
-              Intra College Hackathon
-            </h3>
-
-            <p className="leading-tight text-base sm:text-lg sm:leading-relaxed text-center font-sharetech">
-              Hackathon 2025, organized by the Department of Computer Science and Engineering at Thanthai Periyar Government Institute of Technology (TPGIT), Vellore, is an Intra-College Hackathon designed to ignite creativity, collaboration, and problem-solving among students.
-              This edition, Hackathon 2.0, provides an inspiring platform where innovative minds come together to build real-world solutions using cutting-edge technologies.
-              Hackathon 2.0 isn’t just a competition — it’s a celebration of innovation, teamwork, and learning.
-            </p>
-          </div>
-          <ImageGallery />
-        </div>
+      <section id="about" className="about-section">
+        <h2>About Hackathon 2.0</h2>
+        <p>
+          Hackathon 2025, organized by the Department of Computer Science and Engineering at TPGIT, Vellore, is an Intra-College Hackathon designed to ignite creativity, collaboration, and problem-solving among students.
+        </p>
+        <ImageGallery />
       </section>
 
       {/* Events Section */}
-      <section id="events" className="sm:py-20 px-4 relative flex flex-col items-center justify-center">
-  <div className="max-w-7xl w-full mx-auto flex flex-col items-center">
-    <h2 className="text-4xl font-bold mb-16 text-center bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
-      Problem Statements
-    </h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {PROBLEM_STATEMENTS.map((ps) => (
-        <EventCard key={ps.id} item={ps} />
-      ))}
-    </div>
-  </div>
-</section>
-
-
-      
+      <section id="events" className="events-section">
+        <h2>Problem Statements</h2>
+        <div className="events-container">
+          {PROBLEM_STATEMENTS.map((ps) => (
+            <EventCard key={ps.id} item={ps} />
+          ))}
+        </div>
+      </section>
 
       {/* Faculty Sections */}
       <FacultySection title="Meet Our Head" staff={headFaculty} />
       <FacultySection title="Meet Our Teaching Staff" staff={teachingStaff} />
       <FacultySection title="Meet Our Technical Staff" staff={nonTeachingStaff} />
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 relative">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-16 text-center bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
-            Contact & Location
-          </h2>
-
-          <div className="flex flex-col items-center justify-center space-y-8">
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <div className="p-4 rounded-lg border border-yellow-500 flex items-center space-x-4 hover:shadow-[0_0_20px_rgba(255,200,0,0.5)] transition-all bg-transparent">
-                <Users size={24} className="text-yellow-400" />
-                <div>
-                  <p className="text-yellow-400 font-medium">Student 1</p>
-                  <p className="text-gray-300">26363636362</p>
-                </div>
-              </div>
-
-              <div className="p-4 rounded-lg border border-yellow-500 flex items-center space-x-4 hover:shadow-[0_0_20px_rgba(255,200,0,0.5)] transition-all bg-transparent">
-                <Users size={24} className="text-yellow-400" />
-                <div>
-                  <p className="text-yellow-400 font-medium">Student 2</p>
-                  <p className="text-gray-300">37373773774</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-lg border border-red-500 flex items-center space-x-4 hover:shadow-[0_0_20px_rgba(255,100,0,0.6)] transition-all bg-transparent">
-              <MapPin size={24} className="text-red-500" />
-              <div>
-                <p className="text-red-400 font-medium">
-                  Venue: Department of Computer Science Seminar Hall
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <Questions />
 
       {/* Footer */}
-      <footer className="py-8 px-4 border-t border-gray-800 bg-transparent">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-gray-200 mb-4">
-            © Thanthai Periyar Government Institute of Technology Hackathon 2.0
-          </p>
-          <div className="text-sm text-gray-100">
-            <p>🔥 Made with Passion by CSE Department</p>
-          </div>
-        </div>
+      <footer className="footer">
+        <p>© Thanthai Periyar Government Institute of Technology Hackathon 2.0</p>
+        <p>🔥 Made with Passion by CSE Department</p>
       </footer>
+
+      <style jsx>{`
+        .homepage {
+          background-color: #000;
+          color: #fff;
+          font-family: sans-serif;
+        }
+
+        .about-section {
+          padding: 60px 20px;
+          text-align: center;
+          background: linear-gradient(to bottom, #1a1a1a, #000);
+        }
+
+        .about-section h2 {
+          font-size: 40px;
+          color: #ffcc00;
+          margin-bottom: 20px;
+        }
+
+        .about-section h3 {
+          font-size: 28px;
+          color: #ffa500;
+          margin-bottom: 20px;
+        }
+
+        .about-section p {
+          max-width: 700px;
+          margin: 0 auto 40px;
+          font-size: 18px;
+          color: #ccc;
+        }
+
+        .events-section {
+          padding: 60px 20px;
+          text-align: center;
+          background-color: #111;
+        }
+
+        .events-section h2 {
+          font-size: 40px;
+          color: #ffcc00;
+          margin-bottom: 40px;
+        }
+
+        .events-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+        }
+
+        .footer {
+          padding: 40px 20px;
+          text-align: center;
+          background-color: #111;
+        }
+
+        .footer p:first-child {
+          color: #ffcc00;
+          margin-bottom: 10px;
+        }
+
+        .footer p:last-child {
+          color: #ffa500;
+        }
+      `}</style>
     </div>
   );
 };

@@ -19,7 +19,7 @@ const AnimatedBackground: React.FC = () => {
       particles.forEach((particle, i) => {
         const data = particleData[i];
         
-        // Update position with velocity
+        // Update position
         data.x += data.vx;
         data.y += data.vy;
         
@@ -31,11 +31,11 @@ const AnimatedBackground: React.FC = () => {
         (particle as HTMLElement).style.left = `${data.x}%`;
         (particle as HTMLElement).style.top = `${data.y}%`;
         
-        // Occasionally change direction for more organic movement
+        // Random velocity variation
         if (Math.random() < 0.02) {
           data.vx += (Math.random() - 0.5) * 0.05;
           data.vy += (Math.random() - 0.5) * 0.05;
-          
+
           // Limit speed
           const speed = Math.sqrt(data.vx * data.vx + data.vy * data.vy);
           if (speed > 0.3) {
@@ -53,12 +53,12 @@ const AnimatedBackground: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full z-[-1] overflow-hidden bg-black">
-      <div className="particles-container absolute inset-0" ref={particlesRef}>
+    <div className="animated-background">
+      <div className="particles-container" ref={particlesRef}>
         {[...Array(200)].map((_, i) => (
           <div 
             key={i}
-            className="particle absolute rounded-full bg-white"
+            className="particle"
             style={{
               width: `${Math.random() * 2 + 1}px`,
               height: `${Math.random() * 2 + 1}px`,
@@ -68,6 +68,34 @@ const AnimatedBackground: React.FC = () => {
           />
         ))}
       </div>
+
+      <style>{`
+        .animated-background {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          overflow: hidden;
+          background-color: black;
+        }
+
+        .particles-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .particle {
+          position: absolute;
+          border-radius: 50%;
+          background-color: white;
+          pointer-events: none;
+        }
+      `}</style>
     </div>
   );
 };

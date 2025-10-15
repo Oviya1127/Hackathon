@@ -19,26 +19,9 @@ export const PROBLEM_STATEMENTS: ProblemStatement[] = [
     expectedSolution: `A centralized digital notice system with:\n• Secure login for authorized staff.\n• Role- and department-based posting and filtering.\n• Real-time notifications via web, app, or email.\n• Multimedia support for announcements.\n• Auto-refresh display screens across campus.\n• Archive for old notices with keyword search.\n• Analytics on notice views and reach.`,
     registrationOpen: true,
   },
+
   {
     id: "ps3",
-    title: "Biometric Based Attendance System",
-    background: `Manual attendance systems are time-consuming, error-prone, and allow proxy marking. With rising class sizes and compliance needs, institutions require a secure and automated attendance solution. Biometric technology ensures accuracy, transparency, and efficiency in student verification.`,
-    description: `Current attendance marking using registers or spreadsheets lacks reliability. A biometric solution using fingerprint, facial recognition, or RFID ensures unique identification, reduces proxies, and integrates with academic records for compliance and reporting.`,
-    keyParameters: `• Biometric methods: fingerprint, face recognition, RFID/smart card.\n• Secure student enrollment and authentication database.\n• Class/subject mapping linked to timetable.\n• Attendance timestamping (entry, exit, late arrivals).\n• Cloud/local data storage with encryption.\n• Automated alerts for absenteeism.\n• Reporting: student/subject/class-wise attendance, defaulter lists.\n• Scalability to handle thousands of students simultaneously.`,
-    expectedSolution: `A biometric attendance system with:\n• Real-time attendance capture integrated with timetable.\n• Automated alerts to students/parents for absenteeism.\n• Dashboards for faculty and admin to view attendance trends.\n• Report generation for compliance and exam eligibility.\n• Faculty override/edit option in case of device downtime.\n• Secure storage and privacy compliance for biometric data.`,
-    registrationOpen: true,
-  },
-  {
-    id: "ps4",
-    title: "Library Automation for TPGIT",
-    background: `Manual library operations cause delays, errors, and poor user experience in cataloging, issuing, and returning books. Tracking fines and inventory manually is inefficient. A digital system is required to automate processes, improve accessibility, and integrate e-resources.`,
-    description: `Currently, library records are partly manual or basic digital logs. A modern system should support searchable catalogs, barcode/RFID-based circulation, fine management, and integration of digital resources. Students and faculty should have online access to check availability, reserve, and renew books.`,
-    keyParameters: `• Catalog of books with ISBN, author, subject classification, availability.\n• User database (students, faculty, staff) with unique IDs.\n• Book issue, return, and renewal records with timestamps.\n• Reservation and waiting list management.\n• Overdue fine calculation with alerts.\n• Support for digital resources (e-books, journals).\n• Barcode/RFID integration for circulation.\n• Reports: usage statistics, popular books, department-wise trends.`,
-    expectedSolution: `A library management system with:\n• Online catalog search accessible to all users.\n• Barcode/RFID-enabled issue/return system.\n• Online reservation and renewal features.\n• Automated reminders for due/overdue books.\n• User dashboards for personal borrowing history.\n• Admin portal for stock management and reporting.\n• Scalability for integrating e-books and digital repositories.`,
-    registrationOpen: true,
-  },
-  {
-    id: "ps5",
     title: "COPO Attainment Software",
     background: `NBA accreditation requires institutions to track and report Course Outcomes (COs) and Program Outcomes (POs). Manual spreadsheet-based COPO calculations are tedious, error-prone, and non-standardized. Institutions need a dedicated system to automate outcome mapping, calculation, and reporting.`,
     description: `Currently, COPO attainment mapping involves manual data entry of assessments, making it difficult to manage large datasets across multiple courses and semesters. A software platform should automate COPO calculations, integrate assessment data, and generate NBA-compliant reports.`,

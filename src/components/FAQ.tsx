@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronDown } from 'tabler-icons-react';
-import FlareCursor from "../components/Cursor";  // adjust path based on your folder
+import FlareCursor from "../components/Cursor";  // adjust path
 
 const faqData = [
   {
@@ -33,7 +33,6 @@ const faqData = [
     question: 'What is the team size limit?',
     answer: 'Each team can have a maximum of 4 members. Solo participation is also allowed for individual developers.'
   },
-  
   {
     question: 'How will the projects be judged?',
     answer: 'Judging will be based on creativity, innovation, technical implementation, design, and presentation. The decision of the judges will be final.'
@@ -54,38 +53,110 @@ function Questions() {
   }
 
   return (
-    <section className='pt-20' id="faqs">
+    <section className="faq-section" id="faqs">
       <FlareCursor />
-      <h2 className="text-4xl font-bold mb-16 text-center gradient-text">Hackathon FAQs</h2>
+      <h2 className="faq-title">Hackathon FAQs</h2>
 
-      <div className='py-3 mx-auto px-3'>
-        <div className='mx-auto max-w-7xl flex flex-col'>
-          {faqData.map((faq, index) => (
-            <div key={faq.question} className="z-10">
-              <div
-                onClick={() => handleClick(index)}
-                className="flex cursor-pointer justify-between gap-2 text-[#bdbdbe] hover:text-green-400 font-space bg-black border-[#76767661] border m-3 sm:m-5 px-5 py-5 rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,255,100,0.2)]"
-              >
-                <span className="text-lg sm:text-xl">{faq.question}</span>
-                <span>
-                  {openStates[index] ? (
-                    <ChevronDown stroke={1.5} size={24} />
-                  ) : (
-                    <ChevronDown size={24} stroke={1.5} />
-                  )}
-                </span>
-              </div>
-              {openStates[index] && (
-                <div className='flex py-3 animate-fadeIn'>
-                  <p className='text-sm sm:text-xl text-green-400 font-space px-5 sm:px-10 text-wrap'>
-                    {faq.answer}
-                  </p>
-                </div>
-              )}
+      <div className="faq-container">
+        {faqData.map((faq, index) => (
+          <div key={index} className="faq-item">
+            <div className="faq-question" onClick={() => handleClick(index)}>
+              <span>{faq.question}</span>
+              <span className={`chevron ${openStates[index] ? 'open' : ''}`}>
+                <ChevronDown stroke={1.5} size={24} />
+              </span>
             </div>
-          ))}
-        </div>
+            {openStates[index] && (
+              <div className="faq-answer">
+                <p>{faq.answer}</p>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
+
+      <style jsx>{`
+        .faq-section {
+          padding: 60px 20px;
+          background-color: #000;
+          color: #fff;
+          text-align: center;
+          font-family: Arial, sans-serif;
+        }
+
+        .faq-title {
+          font-size: 36px;
+          font-weight: bold;
+          margin-bottom: 40px;
+          color: #ffcc00;
+          text-shadow: 2px 2px 5px #000;
+        }
+
+        .faq-container {
+          max-width: 900px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .faq-item {
+          background-color: #111;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 12px;
+          overflow: hidden;
+          transition: box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+          box-shadow: 0 0 20px rgba(0, 255, 100, 0.3);
+        }
+
+        .faq-question {
+          padding: 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          font-size: 18px;
+          transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+          color: #00ff66;
+        }
+
+        .chevron {
+          transition: transform 0.3s ease;
+        }
+
+        .chevron.open {
+          transform: rotate(180deg);
+        }
+
+        .faq-answer {
+          padding: 15px 20px;
+          background-color: #000;
+          animation: fadeIn 0.3s ease forwards;
+        }
+
+        .faq-answer p {
+          font-size: 16px;
+          color: #00ff66;
+          line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 }
