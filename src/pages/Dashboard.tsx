@@ -1,5 +1,4 @@
 import React from 'react';
-import AnimatedBackground from '../components/ui/AnimatedBackground';
 import EventCard from '../components/ProblemStatementCard';
 import FacultyCard from '../components/FacultyCard';
 import { PROBLEM_STATEMENTS } from "../data/ProblemStatements";
@@ -90,8 +89,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="homepage">
       <Navbar />
-      <AnimatedBackground />
-
+  
       {/* Hero Section */}
       <Hero />
 
