@@ -26,26 +26,6 @@ const faqData: FAQItem[] = [
     question: 'Can I register on the spot at the venue?',
     answer: 'No, on-spot registration is not allowed. All teams must register before the deadline through the online registration link.'
   },
-  {
-    question: 'When does the hackathon start?',
-    answer: 'The hackathon officially begins one month before the final presentation day. Teams can start building and refining their projects during this period.'
-  },
-  {
-    question: 'What happens on the final presentation day?',
-    answer: 'On the final day, all teams must present their completed projects or prototypes to the judging panel. You’ll have to demonstrate your idea, explain the implementation, and answer a few questions from the judges.'
-  },
-  {
-    question: 'What is the team size limit?',
-    answer: 'Each team can have a maximum of 4 members. Solo participation is also allowed for individual developers.'
-  },
-  {
-    question: 'How will the projects be judged?',
-    answer: 'Judging will be based on creativity, innovation, technical implementation, design, and presentation. The decision of the judges will be final.'
-  },
-  {
-    question: 'Will certificates or prizes be provided?',
-    answer: 'Yes! Winners will receive exciting prizes and recognition. All participants will be awarded certificates.'
-  },
 ];
 
 export default function Questions() {
@@ -65,7 +45,7 @@ export default function Questions() {
             <div className="faq-question" onClick={() => handleClick(index)}>
               <span>{faq.question}</span>
               <span className={`chevron ${openStates[index] ? 'open' : ''}`}>
-                <ChevronDown stroke={1.5} size={24} />
+                <ChevronDown stroke="1.5" size={24} /> {/* stroke as string */}
               </span>
             </div>
             {openStates[index] && (
@@ -77,7 +57,8 @@ export default function Questions() {
         ))}
       </div>
 
-      <style jsx>{`
+      <style>{/* standard React style */}
+        {`
         .faq-section {
           padding: 60px 20px;
           background-color: #000;
@@ -149,25 +130,16 @@ export default function Questions() {
         }
 
         @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
-          .faq-question {
-            font-size: 16px;
-          }
-          .faq-answer p {
-            font-size: 14px;
-          }
+          .faq-question { font-size: 16px; }
+          .faq-answer p { font-size: 14px; }
         }
-      `}</style>
+      `}
+      </style>
     </section>
   );
 }
