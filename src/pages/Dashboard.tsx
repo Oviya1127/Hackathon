@@ -1,3 +1,4 @@
+import React from 'react';
 import EventCard from '../components/ProblemStatementCard';
 import FacultyCard from '../components/FacultyCard';
 import { PROBLEM_STATEMENTS } from "../data/ProblemStatements";
@@ -5,8 +6,7 @@ import Navbar from '../components/Navbar';
 import ImageGallery from '../components/ImageGallery';
 import Questions from '../components/FAQ';
 import Hero from '../components/Hero';
-//import ParticleBackground from '../components/ParticleBackground';
-
+import ParticleBackground from '../components/ParticleBackground';
 
 interface Faculty {
   name: string;
@@ -24,7 +24,7 @@ interface FacultySectionProps {
 const FacultySection: React.FC<FacultySectionProps> = ({ title, staff }) => {
   return (
     <section className="faculty-section">
-      <h2 className="section-title">{title}</h2>
+      {title && <h2 className="section-title">{title}</h2>}
       <div className="faculty-container">
         {staff.map((member, index) => (
           <FacultyCard key={index} {...member} />
@@ -34,7 +34,7 @@ const FacultySection: React.FC<FacultySectionProps> = ({ title, staff }) => {
       <style>{`
         .faculty-section {
           padding: 60px 20px;
-          background: linear-gradient(to right, #1a1a1a, #000, #1a1a1a);
+          background: transparent;
           color: #fff;
           text-align: center;
         }
@@ -74,15 +74,12 @@ const HomePage: React.FC = () => {
 
   const teachingStaff: Faculty[] = [
     { name: 'Dr.N.Thirugnanasambandan', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img18.jpg' },
-    { name: 'Dr .S.P.Vijayanand', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img19.jpg' },
-    { name: 'Dr .K.Narayanan', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img15.jpg' },
+    { name: 'Dr.S.P.Vijayanand', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img19.jpg' },
+    { name: 'Dr.K.Narayanan', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img15.jpg' },
     { name: 'Mr.K.Thirunavukkarasu', qualification: 'M.E.', title: 'Assistant Professor', role: '', image: '/faculty/10.jpeg' },
     { name: 'Mrs.N.Naveena Begum', qualification: 'M.E.', title: 'Assistant Professor', role: '', image: '/faculty/11.jpeg' },
     { name: 'Mrs.S.Vanathi', qualification: 'M.E.', title: 'Assistant Professor', role: '', image: '/faculty/6.jpeg' },
     { name: 'Mrs.A.Priyangaa', qualification: 'M.E.', title: 'Assistant Professor', role: '', image: '/faculty/8.jpg' },
-    
-  
-   
   ];
 
   const nonTeachingStaff: Faculty[] = [
@@ -91,69 +88,71 @@ const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="homepage">
-    
-      <Navbar />
+    <div className="homepage-wrapper">
+      {/* Particle Background behind all content */}
+     
 
-  
-      {/* Hero Section */}
-      <Hero />
+      {/* Main content */}
+      <div className="homepage">
 
-      {/* About Section */}
-      <section id="about" className="about-section">
-        <h2>About Hackathon 2.0</h2>
-        <p>
-          Hackathon 2025, organized by the Department of Computer Science and Engineering at TPGIT, Vellore, is an Intra-College Hackathon designed to ignite creativity, collaboration, and problem-solving among students.
-        </p>
-        <ImageGallery />
-      </section>
+      <ParticleBackground />
+        <Navbar />
+        <Hero />
 
-      {/* Events Section */}
-      <section id="events" className="events-section">
-        <h2>Problem Statements</h2>
-        <div className="events-container">
-          {PROBLEM_STATEMENTS.map((ps) => (
-            <EventCard key={ps.id} item={ps} />
-          ))}
-        </div>
-      </section>
+        {/* About Section */}
+        <section id="about" className="about-section">
+          <h2>About Hackathon 2.0</h2>
+          <p>
+            Hackathon 2025, organized by the Department of Computer Science and Engineering at TPGIT, Vellore, is an Intra-College Hackathon designed to ignite creativity, collaboration, and problem-solving among students.
+          </p>
+          <ImageGallery />
+        </section>
 
-      {/* Faculty Sections */}
-      <FacultySection title="" staff={headFaculty} />
-      <FacultySection title="Meet Our Teaching Staff" staff={teachingStaff} />
-      <FacultySection title="Meet Our Technical Staff" staff={nonTeachingStaff} />
+        {/* Events Section */}
+        <section id="events" className="events-section">
+          <h2>Problem Statements</h2>
+          <div className="events-container">
+            {PROBLEM_STATEMENTS.map((ps) => (
+              <EventCard key={ps.id} item={ps} />
+            ))}
+          </div>
+        </section>
 
-      {/* FAQ Section */}
-      <Questions />
+        {/* Faculty Sections */}
+        <FacultySection title="" staff={headFaculty} />
+        <FacultySection title="Meet Our Teaching Staff" staff={teachingStaff} />
+        <FacultySection title="Meet Our Technical Staff" staff={nonTeachingStaff} />
 
-      {/* Footer */}
-      <footer className="footer">
-        <p>© Thanthai Periyar Government Institute of Technology Hackathon 2.0</p>
-        <p>🔥 Made with Passion by CSE Department</p>
-      </footer>
+        {/* FAQ Section */}
+        <Questions />
+
+        {/* Footer */}
+        <footer className="footer">
+          <p>© Thanthai Periyar Government Institute of Technology Hackathon 2.0</p>
+          <p>🔥 Made with Passion by CSE Department</p>
+        </footer>
+      </div>
 
       <style>{`
         .homepage {
-          background-color: #000;
+          position: relative;
+          z-index: 1;
           color: #fff;
           font-family: sans-serif;
+          background: transparent; /* make homepage transparent */
         }
 
-        .about-section {
+        .about-section,
+        .events-section,
+        .footer {
+          background: transparent; /* transparent for all sections */
           padding: 60px 20px;
           text-align: center;
-          background: linear-gradient(to bottom, #1a1a1a, #000);
         }
 
-        .about-section h2 {
-          font-size: 40px;
+        .about-section h2,
+        .events-section h2 {
           color: #ffcc00;
-          margin-bottom: 20px;
-        }
-
-        .about-section h3 {
-          font-size: 28px;
-          color: #ffa500;
           margin-bottom: 20px;
         }
 
@@ -164,29 +163,11 @@ const HomePage: React.FC = () => {
           color: #ccc;
         }
 
-        .events-section {
-          padding: 60px 20px;
-          text-align: center;
-          background-color: #111;
-        }
-
-        .events-section h2 {
-          font-size: 40px;
-          color: #ffcc00;
-          margin-bottom: 40px;
-        }
-
         .events-container {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
           gap: 20px;
-        }
-
-        .footer {
-          padding: 40px 20px;
-          text-align: center;
-          background-color: #111;
         }
 
         .footer p:first-child {

@@ -19,6 +19,7 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
 
   return (
     <>
+      {/* Card */}
       <NeonCard
         className="problem-card"
         onClick={() => setIsOpen(true)}
@@ -40,47 +41,150 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
         </div>
       </NeonCard>
 
+      {/* Modal */}
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} title={item.title}>
         <div className="problem-modal-content">
           {item.image && <img src={item.image} alt={item.title} />}
-          <section>
-            <h4>Background</h4>
-            <p>{item.background}</p>
-          </section>
-          <section>
-            <h4>Description</h4>
-            <p>{item.description}</p>
-          </section>
-          <section>
-            <h4>Key Parameters</h4>
-            <p>{item.keyParameters}</p>
-          </section>
-          <section>
-            <h4>Expected Solution</h4>
-            <p>{item.expectedSolution}</p>
-          </section>
-          <div className="registration">
-            <span>Registration: </span>
-            <span className={item.registrationOpen ? "open" : "closed"}>
-              {item.registrationOpen ? "Open" : "Closed"}
-            </span>
-            <Link to="/signup">Register</Link>
+          <div className="problem-modal-sections">
+            <section>
+              <h4>Background</h4>
+              <p>{item.background}</p>
+            </section>
+            <section>
+              <h4>Description</h4>
+              <p>{item.description}</p>
+            </section>
+            <section>
+              <h4>Key Parameters</h4>
+              <p>{item.keyParameters}</p>
+            </section>
+            <section>
+              <h4>Expected Solution</h4>
+              <p>{item.expectedSolution}</p>
+            </section>
+            <div className="registration">
+              <span>Registration: </span>
+              <span className={item.registrationOpen ? "open" : "closed"}>
+                {item.registrationOpen ? "Open" : "Closed"}
+              </span>
+              <Link to="/signup">Register</Link>
+            </div>
           </div>
         </div>
+
+        <style>{`
+          .problem-modal-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: transparent;
+          }
+
+          .problem-modal-content img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 6px;
+          }
+
+          .problem-modal-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+          }
+
+          @media(min-width: 768px) {
+            .problem-modal-content {
+              flex-direction: row;
+              align-items: flex-start;
+              gap: 24px;
+            }
+
+            .problem-modal-content img {
+              width: 40%;
+              max-height: 500px;
+            }
+
+            .problem-modal-sections {
+              width: 60%;
+            }
+          }
+
+          @media(min-width: 1200px) {
+            .problem-modal-content img {
+              width: 35%;
+            }
+
+            .problem-modal-sections {
+              width: 65%;
+            }
+          }
+
+          .problem-modal-sections section {
+            margin-bottom: 12px;
+          }
+
+          .problem-modal-sections section h4 {
+            color: #facc15;
+            font-weight: 600;
+            margin-bottom: 6px;
+          }
+
+          .problem-modal-sections section p {
+            color: #d1d5db;
+            white-space: pre-line;
+            line-height: 1.5;
+          }
+
+          .registration {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #374151;
+            padding-top: 12px;
+            flex-wrap: wrap;
+          }
+
+          .registration span.open {
+            color: #4ade80;
+            margin-left: 4px;
+          }
+
+          .registration span.closed {
+            color: #f87171;
+            margin-left: 4px;
+          }
+
+          .registration a {
+            background-color: #facc15;
+            color: black;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: filter 0.2s;
+          }
+
+          .registration a:hover {
+            filter: brightness(0.95);
+          }
+        `}</style>
       </Modal>
 
+      {/* Card Styles */}
       <style>{`
         .problem-card {
           cursor: pointer;
           display: flex;
           flex-direction: column;
           transition: transform 0.2s;
-          background-color: #1a1a1a;
+          background-color: rgba(26,26,26,0.85); /* transparent dark */
           border-radius: 12px;
           overflow: hidden;
           box-shadow: 0 0 10px rgba(255,204,0,0.3);
           width: 100%;
-          max-width: 300px; /* flexible card size */
+          max-width: 300px;
           margin: 0 auto;
         }
 
@@ -141,7 +245,7 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
 
         .problem-card-content button {
           padding: 8px 16px;
-          background-color: #333;
+          background-color: rgba(51,51,51,0.8);
           color: #facc15;
           border-radius: 9999px;
           font-weight: 500;
@@ -153,69 +257,6 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
 
         .problem-card-content button:hover {
           opacity: 0.9;
-        }
-
-        .problem-modal-content img {
-          width: 100%;
-          height: auto;
-          max-height: 400px;
-          object-fit: cover;
-          border-radius: 6px;
-          margin-bottom: 16px;
-        }
-
-        .problem-modal-content section {
-          margin-bottom: 16px;
-        }
-
-        .problem-modal-content section h4 {
-          font-size: 1rem;
-          font-weight: 600;
-          color: #facc15;
-          margin-bottom: 4px;
-        }
-
-        .problem-modal-content section p {
-          font-size: 0.875rem;
-          color: #d1d5db;
-          white-space: pre-line;
-        }
-
-        .registration {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          border-top: 1px solid #374151;
-          padding-top: 12px;
-          flex-wrap: wrap;
-        }
-
-        .registration span {
-          font-size: 0.875rem;
-          margin-bottom: 6px;
-        }
-
-        .registration .open {
-          color: #4ade80;
-          margin-left: 4px;
-        }
-
-        .registration .closed {
-          color: #f87171;
-          margin-left: 4px;
-        }
-
-        .registration a {
-          padding: 8px 12px;
-          background-color: #facc15;
-          color: black;
-          border-radius: 6px;
-          text-decoration: none;
-          transition: filter 0.2s;
-        }
-
-        .registration a:hover {
-          filter: brightness(0.95);
         }
 
         @media (min-width: 768px) {
@@ -235,10 +276,6 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
 
           .problem-card-content p {
             font-size: 0.95rem;
-          }
-
-          .problem-modal-content section p {
-            font-size: 1rem;
           }
         }
       `}</style>

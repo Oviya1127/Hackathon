@@ -28,24 +28,17 @@ const FacultyCard: React.FC<FacultyCardProps> = ({
       <style>{`
         .faculty-card {
           background-color: #111;
-          border: 2px solid #333; /* default border */
+          border: 2px solid #333;
           border-radius: 15px;
           padding: 20px;
           width: 220px;
           text-align: center;
           color: #fff;
-          box-shadow: 0 0 5px #000; /* no glow by default */
-          transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
           margin: 10px;
           cursor: pointer;
-        }
-
-        /* Neon glow on hover or tap */
-        .faculty-card:hover,
-        .faculty-card:active {
-          transform: translateY(-5px);
-          border: 2px solid #ffcc00; /* neon yellow/orange */
-          box-shadow: 0 0 15px #ffcc00, 0 0 30px #ffcc00, 0 0 45px #ffcc00;
+          box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00; /* initial glow */
+          animation: neonPulse 2s infinite alternate;
+          transition: transform 0.3s;
         }
 
         .avatar {
@@ -54,14 +47,9 @@ const FacultyCard: React.FC<FacultyCardProps> = ({
           margin: 0 auto 15px auto;
           border-radius: 50%;
           overflow: hidden;
-          border: 2px solid #333; /* default border */
-          transition: border 0.3s, box-shadow 0.3s;
-        }
-
-        .faculty-card:hover .avatar,
-        .faculty-card:active .avatar {
-          border: 4px solid #ffcc00;
-          box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+          border: 2px solid #ffcc00;
+          box-shadow: 0 0 15px #ffcc00, 0 0 30px #ffcc00;
+          animation: neonPulse 2s infinite alternate;
         }
 
         .avatar img {
@@ -74,14 +62,9 @@ const FacultyCard: React.FC<FacultyCardProps> = ({
           font-size: 18px;
           font-weight: bold;
           margin-bottom: 5px;
-          color: #fff;
-          transition: color 0.3s, text-shadow 0.3s;
-        }
-
-        .faculty-card:hover .name,
-        .faculty-card:active .name {
           color: #ffcc00;
-          text-shadow: 0 0 5px #ffcc00, 0 0 10px #ffcc00;
+          text-shadow: 0 0 5px #ffcc00, 0 0 15px #ffcc00;
+          animation: neonText 2s infinite alternate;
         }
 
         .qualification, .title, .role {
@@ -92,6 +75,18 @@ const FacultyCard: React.FC<FacultyCardProps> = ({
 
         .role {
           font-weight: bold;
+        }
+
+        @keyframes neonPulse {
+          0% { box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00; }
+          50% { box-shadow: 0 0 20px #ffcc00, 0 0 40px #ffcc00; }
+          100% { box-shadow: 0 0 15px #ffcc00, 0 0 30px #ffcc00; }
+        }
+
+        @keyframes neonText {
+          0% { text-shadow: 0 0 5px #ffcc00, 0 0 10px #ffcc00; }
+          50% { text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00; }
+          100% { text-shadow: 0 0 7px #ffcc00, 0 0 15px #ffcc00; }
         }
       `}</style>
     </div>

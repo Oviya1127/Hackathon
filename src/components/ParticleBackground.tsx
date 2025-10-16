@@ -1,4 +1,3 @@
-// ParticleBackground.tsx
 'use client';
 import React, { useRef, useEffect } from 'react';
 
@@ -23,24 +22,25 @@ const ParticleBackground: React.FC = () => {
     window.addEventListener('resize', resizeCanvas);
 
     // Initialize particles
-    for (let i = 0; i < numberOfParticles; i++) {
-      particlesArray.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        dx: (Math.random() - 0.5) * 1.5,
-        dy: (Math.random() - 0.5) * 1.5,
-        size: Math.random() * 3 + 1,
-      });
-    }
+    particlesArray = Array.from({ length: numberOfParticles }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      dx: (Math.random() - 0.5) * 1.5,
+      dy: (Math.random() - 0.5) * 1.5,
+      size: Math.random() * 3 + 1,
+    }));
 
     const animate = () => {
       if (!ctx) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Clear with semi-transparent black for motion trail effect
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
       particlesArray.forEach(p => {
         p.x += p.dx;
         p.y += p.dy;
 
-        // Bounce off edges
         if (p.x < 0 || p.x > canvas.width) p.dx = -p.dx;
         if (p.y < 0 || p.y > canvas.height) p.dy = -p.dy;
 
@@ -55,12 +55,23 @@ const ParticleBackground: React.FC = () => {
 
     animate();
 
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-    };
+    return () => window.removeEventListener('resize', resizeCanvas);
   }, []);
 
-  return <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, zIndex: 0, width: '100%', height: '100%' }} />;
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: -1,          // behind everything
+        pointerEvents: 'none' // allow clicks through canvas
+      }}
+    />
+  );
 };
 
 export default ParticleBackground;

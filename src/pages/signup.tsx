@@ -180,6 +180,7 @@ const SignupPage = () => {
             <option value="EEE">EEE</option>
             <option value="MECH">MECH</option>
             <option value="CIVIL">CIVIL</option>
+            <option value="CIVIL">MCA</option>
           </select>
         </div>
 
