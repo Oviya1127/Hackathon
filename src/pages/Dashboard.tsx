@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import ImageGallery from '../components/ImageGallery';
 import Questions from '../components/FAQ';
 import Hero from '../components/Hero';
+import ParticleBackground from '../components/ParticleBackground';
 
 
 interface Faculty {
@@ -72,13 +73,16 @@ const HomePage: React.FC = () => {
   ];
 
   const teachingStaff: Faculty[] = [
+    { name: 'Dr.N.Thirugnanasambandan', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img18.jpg' },
+    { name: 'Dr .S.P.Vijayanand', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img19.jpg' },
+    { name: 'Dr .K.Narayanan', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img15.jpg' },
     { name: 'Mr.K.Thirunavukkarasu', qualification: 'M.E.', title: 'Assistant Professor', role: '', image: '/faculty/10.jpeg' },
     { name: 'Mrs.N.Naveena Begum', qualification: 'M.E.', title: 'Assistant Professor', role: '', image: '/faculty/11.jpeg' },
     { name: 'Mrs.S.Vanathi', qualification: 'M.E.', title: 'Assistant Professor', role: '', image: '/faculty/6.jpeg' },
     { name: 'Mrs.A.Priyangaa', qualification: 'M.E.', title: 'Assistant Professor', role: '', image: '/faculty/8.jpg' },
-    { name: 'Dr .K.Narayanan', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img15.jpg' },
-    { name: 'Dr .S.P.Vijayanand', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img18.jpg' },
-    { name: 'Dr.N.Thirugnanasambandan', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/img19.jpg' },
+    
+  
+   
   ];
 
   const nonTeachingStaff: Faculty[] = [
@@ -88,7 +92,9 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="homepage">
+        <ParticleBackground />
       <Navbar />
+
   
       {/* Hero Section */}
       <Hero />
@@ -113,7 +119,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Faculty Sections */}
-      <FacultySection title="Meet Our Head" staff={headFaculty} />
+      <FacultySection title="" staff={headFaculty} />
       <FacultySection title="Meet Our Teaching Staff" staff={teachingStaff} />
       <FacultySection title="Meet Our Technical Staff" staff={nonTeachingStaff} />
 

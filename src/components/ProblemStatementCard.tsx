@@ -19,10 +19,7 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
 
   return (
     <>
-      <NeonCard
-        className="problem-card"
-        onClick={() => setIsOpen(true)}
-      >
+      <NeonCard className="problem-card">
         <div className="problem-card-image">
           {item.image ? (
             <img src={item.image} alt={item.title} />
@@ -40,6 +37,7 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
         </div>
       </NeonCard>
 
+      {/* Modal */}
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} title={item.title}>
         <div className="problem-modal-content">
           {item.image && <img src={item.image} alt={item.title} />}
@@ -71,7 +69,7 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
 
       <style>{`
         .problem-card {
-          cursor: pointer;
+          cursor: default;
           display: flex;
           flex-direction: column;
           transition: transform 0.2s;
@@ -79,6 +77,7 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
           border-radius: 12px;
           overflow: hidden;
           box-shadow: 0 0 10px rgba(255,204,0,0.3);
+          width: 100%;
         }
 
         .problem-card:hover {
@@ -88,7 +87,7 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
 
         .problem-card-image img {
           width: 100%;
-          height: 160px;
+          height: 180px;
           object-fit: cover;
           transition: transform 0.3s;
         }
@@ -99,7 +98,7 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
 
         .problem-card-placeholder {
           width: 100%;
-          height: 160px;
+          height: 180px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -120,14 +119,14 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
         }
 
         .problem-card-content h3 {
-          font-size: 1.1rem;
+          font-size: 1.2rem;
           font-weight: 600;
           margin-bottom: 8px;
           color: #ffcc00;
         }
 
         .problem-card-content p {
-          font-size: 0.875rem;
+          font-size: 0.9rem;
           color: #ccc;
           display: -webkit-box;
           -webkit-line-clamp: 3;
@@ -137,7 +136,7 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
         }
 
         .problem-card-content button {
-          padding: 8px 16px;
+          padding: 10px 18px;
           background-color: #333;
           color: #facc15;
           border-radius: 9999px;
@@ -145,15 +144,17 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
           border: none;
           cursor: pointer;
           transition: opacity 0.2s;
+          align-self: flex-start;
         }
 
         .problem-card-content button:hover {
           opacity: 0.9;
         }
 
+        /* Modal Styles */
         .problem-modal-content img {
           width: 100%;
-          height: 224px;
+          max-height: 300px;
           object-fit: cover;
           border-radius: 6px;
           margin-bottom: 16px;
@@ -171,7 +172,7 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
         }
 
         .problem-modal-content section p {
-          font-size: 0.875rem;
+          font-size: 0.9rem;
           color: #d1d5db;
           white-space: pre-line;
         }
@@ -209,6 +210,25 @@ const ProblemStatementCard: React.FC<{ item: ProblemStatement }> = ({ item }) =>
 
         .registration a:hover {
           filter: brightness(0.95);
+        }
+
+        /* Responsive Grid */
+        @media (min-width: 1024px) {
+          .problem-card {
+            width: 30%; /* 3 cards per row on desktop */
+          }
+        }
+
+        @media (max-width: 1023px) and (min-width: 768px) {
+          .problem-card {
+            width: 45%; /* 2 cards per row on tablet */
+          }
+        }
+
+        @media (max-width: 767px) {
+          .problem-card {
+            width: 90%; /* 1 card per row on mobile */
+          }
         }
       `}</style>
     </>
