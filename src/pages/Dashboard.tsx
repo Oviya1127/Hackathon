@@ -117,8 +117,8 @@ const HomePage: React.FC = () => {
 
         {/* Faculty Sections */}
         <FacultySection title="" staff={headFaculty} />
-        <FacultySection title="Meet Our Teaching Staff" staff={teachingStaff} />
-        <FacultySection title="Meet Our Technical Staff" staff={nonTeachingStaff} />
+        <FacultySection title="" staff={teachingStaff} />
+        <FacultySection title="" staff={nonTeachingStaff} />
 
         {/* FAQ Section */}
         <Questions />
