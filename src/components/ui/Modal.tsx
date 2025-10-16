@@ -17,7 +17,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     >
       <div
         className="bg-gray-900 rounded-xl p-6 max-w-lg w-full shadow-[0_0_25px_rgba(255,165,0,0.6)]"
-        onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+        onClick={(e) => e.stopPropagation()}
       >
         {children}
         <button

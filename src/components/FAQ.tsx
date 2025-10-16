@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ChevronDown } from 'tabler-icons-react';
 import FlareCursor from "../components/Cursor";
+import React from "react"
 
 type FAQItem = {
   question: string;

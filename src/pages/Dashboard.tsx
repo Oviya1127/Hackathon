@@ -92,7 +92,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="homepage">
-        <ParticleBackground />
+       
       <Navbar />
 
   

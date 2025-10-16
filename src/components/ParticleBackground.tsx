@@ -13,7 +13,7 @@ const ParticleBackground: React.FC = () => {
     if (!ctx) return;
 
     let particlesArray: { x: number; y: number; dx: number; dy: number; size: number }[] = [];
-    const numberOfParticles = 80;
+    const numberOfParticles = 70;
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
