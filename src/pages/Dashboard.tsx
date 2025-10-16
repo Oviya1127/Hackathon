@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import ImageGallery from '../components/ImageGallery';
 import Questions from '../components/FAQ';
 import Hero from '../components/Hero';
-import ParticleBackground from '../components/ParticleBackground';
+//import ParticleBackground from '../components/ParticleBackground';
 
 
 interface Faculty {
@@ -92,7 +92,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="homepage">
-        <ParticleBackground />
+    
       <Navbar />
 
   
