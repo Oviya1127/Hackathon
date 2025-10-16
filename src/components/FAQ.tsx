@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { ChevronDown } from 'tabler-icons-react';
 import FlareCursor from "../components/Cursor";
 
-
 type FAQItem = {
   question: string;
   answer: string;
@@ -49,14 +48,11 @@ const faqData: FAQItem[] = [
   },
 ];
 
-function Questions() {
-
+export default function Questions() {
   const [openStates, setOpenStates] = useState<boolean[]>(Array(faqData.length).fill(false));
 
   const handleClick = (index: number) => {
-    const newOpenStates = [...openStates];
-    newOpenStates[index] = !newOpenStates[index];
-    setOpenStates(newOpenStates);
+    setOpenStates(prev => prev.map((_, i) => i === index ? !prev[i] : false));
   };
 
   return (
@@ -69,7 +65,7 @@ function Questions() {
             <div className="faq-question" onClick={() => handleClick(index)}>
               <span>{faq.question}</span>
               <span className={`chevron ${openStates[index] ? 'open' : ''}`}>
-                <ChevronDown stroke='1.5' size={24} />
+                <ChevronDown stroke={1.5} size={24} />
               </span>
             </div>
             {openStates[index] && (
@@ -81,7 +77,7 @@ function Questions() {
         ))}
       </div>
 
-      <style>{`
+      <style jsx>{`
         .faq-section {
           padding: 60px 20px;
           background-color: #000;
@@ -112,6 +108,7 @@ function Questions() {
           border-radius: 12px;
           overflow: hidden;
           transition: box-shadow 0.3s ease;
+          cursor: pointer;
         }
 
         .faq-item:hover {
@@ -123,7 +120,6 @@ function Questions() {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          cursor: pointer;
           font-size: 18px;
           transition: color 0.3s ease;
         }
@@ -162,9 +158,16 @@ function Questions() {
             transform: translateY(0);
           }
         }
+
+        @media (max-width: 768px) {
+          .faq-question {
+            font-size: 16px;
+          }
+          .faq-answer p {
+            font-size: 14px;
+          }
+        }
       `}</style>
     </section>
   );
 }
-
-export default Questions;
