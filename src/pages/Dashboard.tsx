@@ -33,16 +33,16 @@ const FacultySection: React.FC<FacultySectionProps> = ({ title, staff }) => {
 
       <style>{`
         .faculty-section {
-          padding: 60px 20px;
+          padding: 40px 20px; /* reduced from 60px */
           background: transparent;
           color: #fff;
           text-align: center;
         }
 
         .section-title {
-          font-size: 32px;
+          font-size: 28px;
           font-weight: bold;
-          margin-bottom: 40px;
+          margin-bottom: 30px; /* reduced space */
           color: #ffcc00;
         }
 
@@ -67,7 +67,7 @@ const FacultySection: React.FC<FacultySectionProps> = ({ title, staff }) => {
 const HomePage: React.FC = () => {
   const headFaculty: Faculty[] = [
     { name: 'Dr.S.LETITIA', qualification: 'M.E.,Ph.D.', title: 'Principal', role: '', image: '/faculty/3.jpg' },
-    { name: 'Dr.N.Jagadeeswari', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: 'Treasurer & Event Coordinator', image: '/faculty/1.png' },
+    { name: 'Dr.N.Jagadeeswari', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: 'Faculty Coordinator', image: '/faculty/1.png' },
     { name: 'Dr.K.Saraswathi', qualification: 'M.E.,Ph.D.', title: 'Assistant Professor', role: '', image: '/faculty/5.png' },
     { name: 'Prof.B.Jothi', qualification: 'M.E.', title: 'Associate Professor', role: '', image: '/faculty/4.png' },
   ];
@@ -89,16 +89,13 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="homepage-wrapper">
-      {/* Particle Background behind all content */}
+     
      
 
-      {/* Main content */}
       <div className="homepage">
-
       <ParticleBackground />
-        <Navbar />
-        <Hero />
-
+      <Navbar />
+      <Hero />
         {/* About Section */}
         <section id="about" className="about-section">
           <h2>About Hackathon 2.0</h2>
@@ -139,26 +136,24 @@ const HomePage: React.FC = () => {
           z-index: 1;
           color: #fff;
           font-family: sans-serif;
-          background: transparent; /* make homepage transparent */
+          background: transparent;
         }
 
-        .about-section,
-        .events-section,
-        .footer {
-          background: transparent; /* transparent for all sections */
-          padding: 60px 20px;
+        section {
+          padding: 40px 20px; /* reduced vertical padding for all sections */
+          margin-top: 10px;
           text-align: center;
         }
 
         .about-section h2,
         .events-section h2 {
           color: #ffcc00;
-          margin-bottom: 20px;
+          margin-bottom: 15px; /* smaller gap */
         }
 
         .about-section p {
           max-width: 700px;
-          margin: 0 auto 40px;
+          margin: 0 auto 25px;
           font-size: 18px;
           color: #ccc;
         }
@@ -170,13 +165,28 @@ const HomePage: React.FC = () => {
           gap: 20px;
         }
 
+        .footer {
+          padding: 30px 20px; /* smaller padding */
+          background: transparent;
+        }
+
         .footer p:first-child {
           color: #ffcc00;
-          margin-bottom: 10px;
+          margin-bottom: 5px;
         }
 
         .footer p:last-child {
           color: #ffa500;
+          font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+          section {
+            padding: 30px 10px;
+          }
+          .about-section p {
+            font-size: 16px;
+          }
         }
       `}</style>
     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface FacultyCardProps {
   name: string;
@@ -13,10 +13,32 @@ const FacultyCard: React.FC<FacultyCardProps> = ({
   title,
   qualification,
   role,
-  image
+  image,
 }) => {
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (cardRef.current) observer.observe(cardRef.current);
+    return () => {
+      if (cardRef.current) observer.unobserve(cardRef.current);
+    };
+  }, []);
+
   return (
-    <div className="faculty-card">
+    <div
+      ref={cardRef}
+      className={`faculty-card ${isVisible ? 'glow' : ''}`}
+    >
       <div className="avatar">
         <img src={image} alt={name} />
       </div>
@@ -36,9 +58,13 @@ const FacultyCard: React.FC<FacultyCardProps> = ({
           color: #fff;
           margin: 10px;
           cursor: pointer;
-          box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00; /* initial glow */
+          box-shadow: none;
+          transition: transform 0.3s, box-shadow 0.5s ease-in-out;
+        }
+
+        .faculty-card.glow {
+          box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
           animation: neonPulse 2s infinite alternate;
-          transition: transform 0.3s;
         }
 
         .avatar {
@@ -48,6 +74,11 @@ const FacultyCard: React.FC<FacultyCardProps> = ({
           border-radius: 50%;
           overflow: hidden;
           border: 2px solid #ffcc00;
+          box-shadow: none;
+          transition: box-shadow 0.5s ease-in-out;
+        }
+
+        .faculty-card.glow .avatar {
           box-shadow: 0 0 15px #ffcc00, 0 0 30px #ffcc00;
           animation: neonPulse 2s infinite alternate;
         }
@@ -63,6 +94,11 @@ const FacultyCard: React.FC<FacultyCardProps> = ({
           font-weight: bold;
           margin-bottom: 5px;
           color: #ffcc00;
+          text-shadow: none;
+          transition: text-shadow 0.5s ease-in-out;
+        }
+
+        .faculty-card.glow .name {
           text-shadow: 0 0 5px #ffcc00, 0 0 15px #ffcc00;
           animation: neonText 2s infinite alternate;
         }
@@ -87,6 +123,10 @@ const FacultyCard: React.FC<FacultyCardProps> = ({
           0% { text-shadow: 0 0 5px #ffcc00, 0 0 10px #ffcc00; }
           50% { text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00; }
           100% { text-shadow: 0 0 7px #ffcc00, 0 0 15px #ffcc00; }
+        }
+
+        .faculty-card:hover {
+          transform: scale(1.05);
         }
       `}</style>
     </div>
