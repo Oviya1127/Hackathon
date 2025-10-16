@@ -5,20 +5,21 @@ const Hero = () => {
     <section className="hero-section">
       <div className="hero-container">
 
-        {/* Logos and College Name */}
+        {/* Logos + College Name */}
         <div className="hero-top-row">
-          <img src="/logo/tpgit_logo.png" className="hero-logo-left" alt="TPGIT Logo" />
-          
+          <img src="/logo/tpgit_logo.png" className="hero-logo" alt="TPGIT Logo" />
+
           <div className="hero-college-container">
-            <h2 className="hero-college gradient-text-college">
-              Thanthai Periyar Government Institute of Technology, Vellore
-            </h2>
+            <h2 className="hero-college-line1 gradient-text-college">Thanthai Periyar</h2>
+            <h3 className="hero-college-line2 gradient-text-college">
+              Government Institute of Technology, Vellore
+            </h3>
           </div>
 
-          <img src="/logo/csealogo.png" className="hero-logo-right" alt="CSE Logo" />
+          <img src="/logo/csealogo.png" className="hero-logo" alt="CSE Logo" />
         </div>
 
-        {/* Hackathon, Department, Dates in one compact div */}
+        {/* Hackathon Info */}
         <div className="hero-main">
           <p className="hero-department gradient-text-department">
             Department of Computer Science & Engineering
@@ -32,7 +33,7 @@ const Hero = () => {
           </p>
         </div>
 
-        {/* Register Button */}
+        {/* Button */}
         <div className="hero-actions">
           <Link to="/signup">
             <button className="hero-button">Register Now</button>
@@ -47,7 +48,7 @@ const Hero = () => {
           align-items: center;
           justify-content: center;
           min-height: 100vh;
-          padding: 4rem 1rem;
+          padding: 3rem 1rem;
           background: rgba(0,0,0,0.6);
         }
 
@@ -57,39 +58,66 @@ const Hero = () => {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 2rem;
+          gap: 1.5rem;
         }
 
-        /* Top row: Logos + College Name */
+        /* Top row: Logos + College */
         .hero-top-row {
           display: flex;
           align-items: center;
           justify-content: space-between;
           width: 100%;
+          flex-wrap: nowrap;
         }
 
-        .hero-logo-left, .hero-logo-right {
-          width: 80px;
-          height: 80px;
+        .hero-logo {
+          width: 70px;
+          height: 70px;
+          flex-shrink: 0;
         }
 
         @media (min-width: 640px) {
-          .hero-logo-left, .hero-logo-right {
-            width: 112px;
-            height: 112px;
+          .hero-logo {
+            width: 100px;
+            height: 100px;
           }
         }
 
         .hero-college-container {
           flex: 1;
-          display: flex;
-          justify-content: center;
+          text-align: center;
         }
 
-        .hero-college {
-          font-size: 2.5rem;
+        .hero-college-line1 {
+          font-size: 2rem;
           font-weight: 900;
-          text-align: center;
+          margin: 0;
+          line-height: 1.1;
+        }
+
+        .hero-college-line2 {
+          font-size: 1.2rem;
+          font-weight: 700;
+          margin: 0;
+          line-height: 1.1;
+        }
+
+        @media (min-width: 640px) {
+          .hero-college-line1 {
+            font-size: 2.8rem;
+          }
+          .hero-college-line2 {
+            font-size: 1.6rem;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .hero-college-line1 {
+            font-size: 3rem;
+          }
+          .hero-college-line2 {
+            font-size: 1.8rem;
+          }
         }
 
         .gradient-text-college {
@@ -108,9 +136,8 @@ const Hero = () => {
         }
 
         .hero-department {
-          font-size: 1.2rem;
+          font-size: 1rem;
           font-weight: 600;
-          line-height: 1.1;
         }
 
         .gradient-text-department {
@@ -122,7 +149,6 @@ const Hero = () => {
         .hero-title {
           font-size: 2rem;
           font-weight: 900;
-          line-height: 1.1;
         }
 
         .gradient-text-hackathon {
@@ -139,30 +165,29 @@ const Hero = () => {
         }
 
         .hero-dates {
-          font-size: 1rem;
+          font-size: 0.95rem;
           color: #facc15;
-          margin-top: 0.25rem;
           font-weight: 500;
         }
 
-        /* Register button */
+        /* Button */
         .hero-actions {
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin-top: 2rem;
+          margin-top: 1rem;
         }
 
         .hero-button {
           cursor: pointer;
-          width: 14em;
-          height: 3em;
-          font-size: 1.125rem;
+          width: 12em;
+          height: 2.8em;
+          font-size: 1rem;
           font-weight: 600;
           color: #fff;
           background: linear-gradient(90deg, #facc15, #fb923c, #f87171);
           border-radius: 9999px;
-          box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+          box-shadow: 0 8px 12px rgba(0,0,0,0.25);
           border: none;
           transition: all 0.3s ease-in-out;
         }
@@ -171,29 +196,6 @@ const Hero = () => {
           transform: scale(1.05);
         }
 
-        @media (min-width: 640px) {
-          .hero-college {
-            font-size: 3rem;
-          }
-          .hero-title {
-            font-size: 2.5rem;
-          }
-          .hero-department {
-            font-size: 1.5rem;
-          }
-        }
-
-        @media (min-width: 768px) {
-          .hero-college {
-            font-size: 3.5rem;
-          }
-          .hero-title {
-            font-size: 3rem;
-          }
-          .hero-department {
-            font-size: 1.75rem;
-          }
-        }
       `}</style>
     </section>
   );
