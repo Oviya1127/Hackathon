@@ -48,7 +48,8 @@ const faqData: FAQItem[] = [
   },
 ];
 
-function Questions(): JSX.Element {
+function Questions() {
+
   const [openStates, setOpenStates] = useState<boolean[]>(Array(faqData.length).fill(false));
 
   const handleClick = (index: number) => {
